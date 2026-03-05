@@ -328,7 +328,7 @@
         /* The rule below FORCES mobile to stack the cards 1 by 1 */
         @media screen and (max-width: 768px) {
             body {
-                padding: 8.5rem 1rem 2rem 1rem !important; /* Adjusted space for shifted banner */
+                padding: 1rem 1rem 2rem 1rem !important; /* Reset padding since banner is no longer fixed */
             }
 
             .dashboard-container {
@@ -402,10 +402,11 @@
             }
             
             .top-bar {
-                position: fixed !important;
-                top: 4.5rem !important; /* Moved slightly down on mobile to prevent overlapping the corner logos */
-                left: 50% !important;
-                transform: translateX(-50%) !important;
+                position: relative !important; /* Un-fix the banner so it scrolls naturally */
+                top: auto !important;
+                left: auto !important;
+                transform: none !important;
+                margin: 5rem auto 1rem auto !important; /* Pushes it below the corner logos and centers it */
                 padding: 0.6rem 1.25rem !important;
                 flex-direction: row !important;
                 justify-content: center !important;
@@ -415,7 +416,7 @@
                 width: max-content !important;
                 max-width: 90% !important;
                 border-radius: 50px !important;
-                background: rgba(11, 25, 44, 0.85) !important; /* Slightly more opaque on mobile */
+                background: rgba(11, 25, 44, 0.5) !important; /* Make it more transparent on mobile */
             }
         }
     </style>
