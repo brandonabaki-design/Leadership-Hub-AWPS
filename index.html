@@ -55,6 +55,23 @@
             100% { background-position: 0% 50%; }
         }
 
+        /* Top Bar for Date and Time */
+        .top-bar {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 1.5rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            pointer-events: none;
+            z-index: 50;
+        }
+
         /* Main Dashboard Container */
         .dashboard-container {
             width: 100%;
@@ -256,10 +273,24 @@
             .hub-title { font-size: 2rem; }
             .grid-layout { grid-template-columns: 1fr; }
             .badge { top: auto; bottom: 1.25rem; right: 1.5rem; } /* Move badge on mobile */
+            
+            .top-bar {
+                position: relative;
+                padding: 0 1rem 1.5rem 1rem;
+                flex-direction: column;
+                align-items: center;
+                gap: 0.5rem;
+            }
         }
     </style>
 </head>
 <body>
+
+    <!-- Live Date and Time Top Bar -->
+    <div class="top-bar">
+        <div id="live-date"></div>
+        <div id="live-time"></div>
+    </div>
 
     <div class="dashboard-container">
         <!-- Header -->
@@ -331,6 +362,18 @@
                 </div>
                 <h2 class="card-title">AI Integration Plan</h2>
                 <p class="card-desc">Future Tech Strategy, ethical AI usage, and classroom implementation.</p>
+            </div>
+
+            <!-- Card 6: MLT SharePoint -->
+            <div class="card" onclick="window.open('https://wschoolae.sharepoint.com/sites/MLT2024/Shared%20Documents/Forms/AllItems.aspx?viewid=51d02232%2Dad78%2D4013%2Dac8b%2D04d7091380e1&p=true&ct=1772686419516&or=OWA%2DNT%2DMail&cid=1f0d2880%2Dbce9%2D8b44%2Dccbe%2D95caf9a4eca4', '_blank')">
+                <button class="share-btn" onclick="copyToClipboard(event, 'https://wschoolae.sharepoint.com/sites/MLT2024/Shared%20Documents/Forms/AllItems.aspx?viewid=51d02232%2Dad78%2D4013%2Dac8b%2D04d7091380e1&p=true&ct=1772686419516&or=OWA%2DNT%2DMail&cid=1f0d2880%2Dbce9%2D8b44%2Dccbe%2D95caf9a4eca4')" aria-label="Share Link">
+                    <i class="fa-solid fa-share-nodes"></i>
+                </button>
+                <div class="icon-wrapper">
+                    <i class="fa-solid fa-folder-open"></i>
+                </div>
+                <h2 class="card-title">MLT SharePoint</h2>
+                <p class="card-desc">Access the Middle Leadership Team shared documents and resources.</p>
             </div>
 
             <!-- ========================================== -->
@@ -444,6 +487,23 @@
         function handlePlaceholderClick(event) {
             showToast("This module is coming soon!");
         }
+
+        /**
+         * Live Date and Time Updates
+         */
+        function updateDateTime() {
+            const now = new Date();
+            
+            const dateOptions = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+            const timeOptions = { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: true };
+            
+            document.getElementById('live-date').textContent = now.toLocaleDateString('en-US', dateOptions);
+            document.getElementById('live-time').textContent = now.toLocaleTimeString('en-US', timeOptions);
+        }
+
+        // Initialize clock and update every second
+        updateDateTime();
+        setInterval(updateDateTime, 1000);
     </script>
 </body>
 </html>
