@@ -269,6 +269,12 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
+        @keyframes pulse {
+            0% { opacity: 0.4; }
+            50% { opacity: 1; }
+            100% { opacity: 0.4; }
+        }
+
         /* Responsive Adjustments */
         @media (max-width: 1024px) {
             .dashboard-container {
@@ -281,22 +287,73 @@
 
         @media (max-width: 768px) {
             body {
-                padding: 1rem 0.5rem 2rem 0.5rem; /* Reduce overall padding for mobile */
+                padding: 1rem 0 2rem 0; /* Remove horizontal padding so container can control it */
+            }
+
+            .dashboard-container {
+                padding: 0; /* Remove padding here too */
+            }
+
+            .header {
+                padding: 0 1rem;
             }
             
             .hub-title { font-size: 1.8rem; }
+
+            /* Add a subtle swipe hint indicator */
+            .header::after {
+                content: '\2190  Swipe to explore  \2192';
+                display: block;
+                font-size: 0.8rem;
+                color: var(--accent-gold);
+                margin-top: 1rem;
+                letter-spacing: 1px;
+                text-transform: uppercase;
+                animation: pulse 2s infinite;
+            }
             
             .grid-layout { 
-                grid-template-columns: 1fr; /* Force 1 column on mobile */
-                gap: 1rem; /* Tighter gap on mobile */
-                padding-bottom: 2rem;
+                display: flex; /* Switch to horizontal swipe carousel */
+                overflow-x: auto; 
+                scroll-snap-type: x mandatory; /* Snap to cards */
+                gap: 1rem; 
+                padding: 0 1rem 2rem 1rem; 
+                -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+                scrollbar-width: none; /* Hide scrollbar Firefox */
+            }
+
+            .grid-layout::-webkit-scrollbar {
+                display: none; /* Hide scrollbar Chrome/Safari */
             }
             
             .card {
-                padding: 1.5rem 1.25rem; /* Slightly compact card padding for mobile screens */
+                flex: 0 0 calc(100vw - 2rem); /* Take exactly 1 screen width minus padding */
+                scroll-snap-align: center; /* Snap cards to center */
+                padding: 3rem 1.5rem; /* Taller padding for readability */
+                min-height: 45vh; /* Make card prominent */
+                justify-content: center; /* Center content vertically */
+                align-items: center; /* Center content horizontally */
+                text-align: center;
+            }
+
+            .card-title {
+                font-size: 1.5rem; /* Larger title */
+                margin-bottom: 1rem;
+            }
+
+            .card-desc {
+                font-size: 1.1rem; /* Larger, more readable description */
+            }
+
+            .icon-wrapper {
+                width: 80px;
+                height: 80px;
+                font-size: 2.5rem;
+                margin-bottom: 1.5rem;
             }
             
-            .badge { top: auto; bottom: 1.25rem; right: 1.5rem; } /* Move badge on mobile */
+            .badge { top: 1.5rem; right: auto; left: 1.5rem; bottom: auto; } /* Move badge to top left */
+            .share-btn { top: 1.25rem; right: 1.25rem; } /* Ensure share btn stays top right */
             
             .top-bar {
                 position: relative;
@@ -304,7 +361,7 @@
                 flex-direction: column;
                 align-items: center;
                 gap: 0.25rem;
-                font-size: 0.85rem; /* Smaller font for time/date on mobile */
+                font-size: 0.85rem;
             }
         }
     </style>
