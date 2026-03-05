@@ -98,19 +98,23 @@
             width: 100%;
         }
 
-        .logo-container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 2rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .school-logo {
-            height: 80px;
+        /* Corner Logos */
+        .logo-left, .logo-right {
+            position: absolute;
+            top: 1.5rem;
+            height: 75px;
             width: auto;
             object-fit: contain;
             filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.4));
+            z-index: 50;
+        }
+
+        .logo-left {
+            left: 2.5rem;
+        }
+
+        .logo-right {
+            right: 2.5rem;
         }
 
         .school-name {
@@ -324,20 +328,24 @@
         /* The rule below FORCES mobile to stack the cards 1 by 1 */
         @media screen and (max-width: 768px) {
             body {
-                padding: 5rem 1rem 2rem 1rem !important; /* Added space so banner doesn't cover logos */
+                padding: 8.5rem 1rem 2rem 1rem !important; /* Adjusted space for shifted banner */
             }
 
             .dashboard-container {
                 padding: 0 !important;
             }
             
-            .logo-container {
-                gap: 1rem !important;
-                margin-bottom: 1rem !important;
+            .logo-left, .logo-right {
+                height: 45px !important; /* Smaller on mobile */
+                top: 1.5rem !important;
             }
 
-            .school-logo {
-                height: 60px !important;
+            .logo-left {
+                left: 1rem !important;
+            }
+
+            .logo-right {
+                right: 1rem !important;
             }
 
             .hub-title { 
@@ -395,7 +403,7 @@
             
             .top-bar {
                 position: fixed !important;
-                top: 1rem !important;
+                top: 4.5rem !important; /* Moved slightly down on mobile to prevent overlapping the corner logos */
                 left: 50% !important;
                 transform: translateX(-50%) !important;
                 padding: 0.6rem 1.25rem !important;
@@ -414,6 +422,10 @@
 </head>
 <body>
 
+    <!-- Corner Logos -->
+    <img src="AWPS.png" alt="Al Wahda Private School Logo" class="logo-left" onerror="this.style.display='none'">
+    <img src="Athena.png" alt="Athena Education Logo" class="logo-right" onerror="this.style.display='none'">
+
     <!-- Live Date and Time Top Bar -->
     <div class="top-bar">
         <div id="live-date"></div>
@@ -423,10 +435,6 @@
     <div class="dashboard-container">
         <!-- Header -->
         <header class="header">
-            <div class="logo-container">
-                <img src="AWPS.png" alt="Al Wahda Private School Logo" class="school-logo" onerror="this.style.display='none'">
-                <img src="Athena.png" alt="Athena Education Logo" class="school-logo" onerror="this.style.display='none'">
-            </div>
             <div class="school-name">Al Wahda Private School</div>
             <h1 class="hub-title">Leadership Hub</h1>
         </header>
