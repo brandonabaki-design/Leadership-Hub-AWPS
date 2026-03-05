@@ -45,7 +45,7 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            padding: 5rem 1rem 2rem 1rem; /* Increased top padding to accommodate the absolute top-bar */
+            padding: 6.5rem 1rem 2rem 1rem; /* Increased top padding to accommodate the floating banner */
             overflow-x: hidden;
             width: 100%;
         }
@@ -57,21 +57,29 @@
             100% { background-position: 0% 50%; }
         }
 
-        /* Top Bar for Date and Time */
+        /* Floating Banner for Date and Time */
         .top-bar {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            padding: 1.5rem 2rem;
+            position: fixed;
+            top: 1.5rem;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(11, 25, 44, 0.7); /* Semi-transparent navy to match theme */
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid var(--glass-border);
+            border-radius: 50px;
+            padding: 0.75rem 2rem;
             display: flex;
-            justify-content: space-between;
-            color: var(--text-muted);
+            justify-content: center;
+            gap: 2rem;
+            color: var(--accent-gold);
             font-size: 0.95rem;
             font-weight: 600;
             letter-spacing: 0.5px;
-            pointer-events: none;
-            z-index: 50;
+            pointer-events: none; /* Allows clicks to pass through if overlapping */
+            z-index: 100;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+            white-space: nowrap;
         }
 
         /* Main Dashboard Container */
@@ -316,7 +324,7 @@
         /* The rule below FORCES mobile to stack the cards 1 by 1 */
         @media screen and (max-width: 768px) {
             body {
-                padding: 1rem 1rem 2rem 1rem !important;
+                padding: 5rem 1rem 2rem 1rem !important; /* Added space so banner doesn't cover logos */
             }
 
             .dashboard-container {
@@ -386,12 +394,20 @@
             }
             
             .top-bar {
-                position: relative !important;
-                padding: 0.5rem 0 1.5rem 0 !important;
-                flex-direction: column !important;
+                position: fixed !important;
+                top: 1rem !important;
+                left: 50% !important;
+                transform: translateX(-50%) !important;
+                padding: 0.6rem 1.25rem !important;
+                flex-direction: row !important;
+                justify-content: center !important;
                 align-items: center !important;
-                gap: 0.5rem !important;
-                font-size: 1rem !important;
+                gap: 1rem !important;
+                font-size: 0.8rem !important;
+                width: max-content !important;
+                max-width: 90% !important;
+                border-radius: 50px !important;
+                background: rgba(11, 25, 44, 0.85) !important; /* Slightly more opaque on mobile */
             }
         }
     </style>
