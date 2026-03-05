@@ -44,7 +44,7 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            padding: 2rem 1rem;
+            padding: 5rem 1rem 2rem 1rem; /* Increased top padding to accommodate the absolute top-bar */
             overflow-x: hidden;
         }
 
@@ -75,8 +75,9 @@
         /* Main Dashboard Container */
         .dashboard-container {
             width: 100%;
-            max-width: 1200px;
+            max-width: 1600px; /* Increased from 1200px to take up more landscape */
             margin: 0 auto;
+            padding: 0 1rem;
         }
 
         /* Header Styling */
@@ -107,7 +108,7 @@
         /* Grid Layout */
         .grid-layout {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(290px, 1fr)); /* Reduced from 320px for more flexible column fitting */
             gap: 1.5rem;
             padding-bottom: 3rem;
         }
@@ -269,17 +270,41 @@
         }
 
         /* Responsive Adjustments */
+        @media (max-width: 1024px) {
+            .dashboard-container {
+                max-width: 100%;
+            }
+            .grid-layout {
+                grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            }
+        }
+
         @media (max-width: 768px) {
-            .hub-title { font-size: 2rem; }
-            .grid-layout { grid-template-columns: 1fr; }
+            body {
+                padding: 1rem 0.5rem 2rem 0.5rem; /* Reduce overall padding for mobile */
+            }
+            
+            .hub-title { font-size: 1.8rem; }
+            
+            .grid-layout { 
+                grid-template-columns: 1fr; /* Force 1 column on mobile */
+                gap: 1rem; /* Tighter gap on mobile */
+                padding-bottom: 2rem;
+            }
+            
+            .card {
+                padding: 1.5rem 1.25rem; /* Slightly compact card padding for mobile screens */
+            }
+            
             .badge { top: auto; bottom: 1.25rem; right: 1.5rem; } /* Move badge on mobile */
             
             .top-bar {
                 position: relative;
-                padding: 0 1rem 1.5rem 1rem;
+                padding: 0.5rem 1rem 1.5rem 1rem;
                 flex-direction: column;
                 align-items: center;
-                gap: 0.5rem;
+                gap: 0.25rem;
+                font-size: 0.85rem; /* Smaller font for time/date on mobile */
             }
         }
     </style>
