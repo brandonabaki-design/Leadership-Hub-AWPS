@@ -2,7 +2,8 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- This next line is CRITICAL for mobile layouts. Do not remove it! -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
     <title>Al Wahda Leadership Hub</title>
     
     <!-- Google Fonts: Inter -->
@@ -46,6 +47,7 @@
             align-items: center;
             padding: 5rem 1rem 2rem 1rem; /* Increased top padding to accommodate the absolute top-bar */
             overflow-x: hidden;
+            width: 100%;
         }
 
         /* Animated Background */
@@ -75,7 +77,7 @@
         /* Main Dashboard Container */
         .dashboard-container {
             width: 100%;
-            max-width: 1600px; /* Increased from 1200px to take up more landscape */
+            max-width: 1600px; /* Uses large landscape space */
             margin: 0 auto;
             padding: 0 1rem;
         }
@@ -85,10 +87,26 @@
             text-align: center;
             margin-bottom: 3rem;
             animation: fadeInDown 0.8s ease-out;
+            width: 100%;
+        }
+
+        .logo-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .school-logo {
+            height: 80px;
+            width: auto;
+            object-fit: contain;
+            filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.4));
         }
 
         .school-name {
-            font-size: 1rem;
+            font-size: 1.1rem;
             text-transform: uppercase;
             letter-spacing: 3px;
             color: var(--accent-gold);
@@ -97,7 +115,7 @@
         }
 
         .hub-title {
-            font-size: 2.5rem;
+            font-size: 3rem; /* Increased from 2.5rem */
             font-weight: 800;
             letter-spacing: -1px;
             background: linear-gradient(to right, #FFF, var(--accent-gold-hover));
@@ -108,9 +126,10 @@
         /* Grid Layout */
         .grid-layout {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(290px, 1fr)); /* Reduced from 320px for more flexible column fitting */
-            gap: 1.5rem;
+            grid-template-columns: repeat(4, 1fr); /* Forces exactly 4 cards per row on large screens */
+            gap: 2rem; /* Increased gap to spread them out nicely */
             padding-bottom: 3rem;
+            width: 100%;
         }
 
         /* Glassmorphism Card Styling */
@@ -120,7 +139,8 @@
             -webkit-backdrop-filter: blur(12px);
             border: 1px solid var(--glass-border);
             border-radius: 1.25rem;
-            padding: 2rem 1.5rem;
+            padding: 2.5rem 2rem; /* Increased padding for bigger card feel */
+            min-height: 280px; /* Gives cards more vertical presence */
             position: relative;
             cursor: pointer;
             transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
@@ -130,17 +150,18 @@
             text-decoration: none;
             color: inherit;
             animation: fadeIn 0.8s ease-out backwards;
+            width: 100%;
         }
 
         /* Staggered animation for cards */
         .card:nth-child(1) { animation-delay: 0.1s; }
-        .card:nth-child(2) { animation-delay: 0.2s; }
-        .card:nth-child(3) { animation-delay: 0.3s; }
-        .card:nth-child(4) { animation-delay: 0.4s; }
-        .card:nth-child(5) { animation-delay: 0.5s; }
-        .card:nth-child(6) { animation-delay: 0.6s; }
-        .card:nth-child(7) { animation-delay: 0.7s; }
-        .card:nth-child(8) { animation-delay: 0.8s; }
+        .card:nth-child(2) { animation-delay: 0.15s; }
+        .card:nth-child(3) { animation-delay: 0.2s; }
+        .card:nth-child(4) { animation-delay: 0.25s; }
+        .card:nth-child(5) { animation-delay: 0.3s; }
+        .card:nth-child(6) { animation-delay: 0.35s; }
+        .card:nth-child(7) { animation-delay: 0.4s; }
+        .card:nth-child(8) { animation-delay: 0.45s; }
 
         .card:hover {
             transform: translateY(-5px) scale(1.02);
@@ -152,17 +173,18 @@
         /* Share Button */
         .share-btn {
             position: absolute;
-            top: 1rem;
-            right: 1rem;
+            top: 1.5rem;
+            right: 1.5rem;
             background: rgba(255, 255, 255, 0.05);
             border: 1px solid rgba(255, 255, 255, 0.1);
             color: var(--text-muted);
-            width: 44px; /* Touch target size */
-            height: 44px; /* Touch target size */
+            width: 48px; /* Slightly larger Touch target size */
+            height: 48px; 
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
+            font-size: 1.1rem;
             cursor: pointer;
             transition: all 0.2s ease;
             z-index: 10;
@@ -177,16 +199,16 @@
 
         /* Card Content */
         .icon-wrapper {
-            width: 60px;
-            height: 60px;
+            width: 70px; /* Increased from 60px */
+            height: 70px; /* Increased from 60px */
             border-radius: 12px;
             background: linear-gradient(135deg, rgba(212, 175, 55, 0.2), rgba(212, 175, 55, 0.05));
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.75rem;
+            font-size: 2rem; /* Increased from 1.75rem */
             color: var(--accent-gold);
-            margin-bottom: 1.25rem;
+            margin-bottom: 1.5rem;
             border: 1px solid rgba(212, 175, 55, 0.3);
             transition: all 0.3s ease;
         }
@@ -197,15 +219,15 @@
         }
 
         .card-title {
-            font-size: 1.25rem;
+            font-size: 1.4rem; /* Increased from 1.25rem */
             font-weight: 600;
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.75rem;
         }
 
         .card-desc {
-            font-size: 0.9rem;
+            font-size: 1rem; /* Increased from 0.9rem */
             color: var(--text-muted);
-            line-height: 1.5;
+            line-height: 1.6;
         }
 
         /* Placeholder/Coming Soon Styling */
@@ -222,12 +244,12 @@
 
         .badge {
             position: absolute;
-            top: 1.25rem;
-            right: 4.5rem; /* Next to share button */
+            top: 1.5rem;
+            right: 5rem; /* Next to share button */
             background: rgba(255, 255, 255, 0.1);
             color: var(--text-light);
-            font-size: 0.7rem;
-            padding: 0.25rem 0.75rem;
+            font-size: 0.75rem;
+            padding: 0.35rem 0.8rem;
             border-radius: 20px;
             letter-spacing: 1px;
             text-transform: uppercase;
@@ -269,92 +291,107 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        @keyframes pulse {
-            0% { opacity: 0.4; }
-            50% { opacity: 1; }
-            100% { opacity: 0.4; }
+        /* ========================================= */
+        /* RESPONSIVE ADJUSTMENTS - ABSOLUTE FORCING */
+        /* ========================================= */
+        
+        /* Medium Laptops */
+        @media screen and (max-width: 1350px) {
+            .grid-layout {
+                grid-template-columns: repeat(3, 1fr); /* Drop to 3 cards safely */
+            }
         }
 
-        /* Responsive Adjustments */
-        @media (max-width: 1024px) {
+        /* Tablets/Smaller Laptops */
+        @media screen and (max-width: 1024px) {
             .dashboard-container {
                 max-width: 100%;
             }
             .grid-layout {
-                grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+                grid-template-columns: repeat(2, 1fr); /* Drop to 2 cards safely */
             }
         }
 
-        @media (max-width: 768px) {
+        /* Mobile Phones */
+        /* The rule below FORCES mobile to stack the cards 1 by 1 */
+        @media screen and (max-width: 768px) {
             body {
-                padding: 1rem 1rem 2rem 1rem;
+                padding: 1rem 1rem 2rem 1rem !important;
             }
 
             .dashboard-container {
-                padding: 0;
+                padding: 0 !important;
             }
             
-            .hub-title { 
-                font-size: 2.2rem; 
+            .logo-container {
+                gap: 1rem !important;
+                margin-bottom: 1rem !important;
             }
 
-            .header::after {
-                display: none; /* Removed the swipe hint */
+            .school-logo {
+                height: 60px !important;
             }
-            
+
+            .hub-title { 
+                font-size: 2.2rem !important; 
+            }
+
             .grid-layout { 
-                display: grid;
-                grid-template-columns: 1fr; /* Forces exactly 1 card per row */
-                gap: 1.5rem; 
-                padding: 0 0 2rem 0; 
+                display: flex !important;
+                flex-direction: column !important; /* Absolute forcing to stack vertically */
+                gap: 1.5rem !important; 
+                padding: 0 0 2rem 0 !important; 
+                width: 100% !important;
             }
             
             .card {
-                padding: 2.5rem 1.5rem; /* Taller, larger cards */
-                justify-content: center;
-                align-items: center;
-                text-align: center;
+                width: 100% !important; /* Force cards to span the full column */
+                padding: 2.5rem 1.5rem !important;
+                justify-content: center !important;
+                align-items: center !important;
+                text-align: center !important;
+                min-height: auto !important; /* Reset min-height for mobile if needed */
             }
 
             .card-title {
-                font-size: 1.6rem; /* Much larger title */
-                margin-bottom: 0.75rem;
+                font-size: 1.6rem !important;
+                margin-bottom: 0.75rem !important;
             }
 
             .card-desc {
-                font-size: 1.15rem; /* Highly readable description */
-                line-height: 1.5;
+                font-size: 1.15rem !important;
+                line-height: 1.5 !important;
             }
 
             .icon-wrapper {
-                width: 80px;
-                height: 80px;
-                font-size: 2.5rem;
-                margin-bottom: 1.5rem;
+                width: 80px !important;
+                height: 80px !important;
+                font-size: 2.5rem !important;
+                margin-bottom: 1.5rem !important;
             }
             
             .badge { 
-                top: 1.5rem; 
-                right: auto; 
-                left: 1.5rem; 
-                font-size: 0.85rem;
-                padding: 0.4rem 0.8rem;
+                top: 1.5rem !important; 
+                right: auto !important; 
+                left: 1.5rem !important; 
+                font-size: 0.85rem !important;
+                padding: 0.4rem 0.8rem !important;
             } 
             
             .share-btn { 
-                top: 1.5rem; 
-                right: 1.5rem; 
-                width: 48px;
-                height: 48px;
+                top: 1.5rem !important; 
+                right: 1.5rem !important; 
+                width: 48px !important;
+                height: 48px !important;
             }
             
             .top-bar {
-                position: relative;
-                padding: 0.5rem 0 1.5rem 0;
-                flex-direction: column;
-                align-items: center;
-                gap: 0.5rem;
-                font-size: 1rem;
+                position: relative !important;
+                padding: 0.5rem 0 1.5rem 0 !important;
+                flex-direction: column !important;
+                align-items: center !important;
+                gap: 0.5rem !important;
+                font-size: 1rem !important;
             }
         }
     </style>
@@ -370,6 +407,10 @@
     <div class="dashboard-container">
         <!-- Header -->
         <header class="header">
+            <div class="logo-container">
+                <img src="AWPS.png" alt="Al Wahda Private School Logo" class="school-logo" onerror="this.style.display='none'">
+                <img src="Athena.png" alt="Athena Education Logo" class="school-logo" onerror="this.style.display='none'">
+            </div>
             <div class="school-name">Al Wahda Private School</div>
             <h1 class="hub-title">Leadership Hub</h1>
         </header>
@@ -415,7 +456,19 @@
                 <p class="card-desc">Classroom Observation and rapid feedback data collection.</p>
             </div>
 
-            <!-- Card 4: Coaching Framework -->
+            <!-- Card 4: Formal Observation -->
+            <div class="card" onclick="window.open('https://brandonabaki-design.github.io/Formal-Observation-Form/', '_blank')">
+                <button class="share-btn" onclick="copyToClipboard(event, 'https://brandonabaki-design.github.io/Formal-Observation-Form/')" aria-label="Share Link">
+                    <i class="fa-solid fa-share-nodes"></i>
+                </button>
+                <div class="icon-wrapper">
+                    <i class="fa-solid fa-clipboard-user"></i>
+                </div>
+                <h2 class="card-title">Formal Observation</h2>
+                <p class="card-desc">Detailed classroom observation and formal teacher evaluation.</p>
+            </div>
+
+            <!-- Card 5: Coaching Framework -->
             <div class="card" onclick="window.open('https://brandonabaki-design.github.io/Coaching-Framework-Al-Wahda/', '_blank')">
                 <button class="share-btn" onclick="copyToClipboard(event, 'https://brandonabaki-design.github.io/Coaching-Framework-Al-Wahda/')" aria-label="Share Link">
                     <i class="fa-solid fa-share-nodes"></i>
@@ -427,7 +480,7 @@
                 <p class="card-desc">Staff Development, mentorship structures, and professional growth.</p>
             </div>
 
-            <!-- Card 5: AI Integration Plan -->
+            <!-- Card 6: AI Integration Plan -->
             <div class="card" onclick="window.open('https://brandonabaki-design.github.io/AI-Integration-Plan-Al-Wahda/', '_blank')">
                 <button class="share-btn" onclick="copyToClipboard(event, 'https://brandonabaki-design.github.io/AI-Integration-Plan-Al-Wahda/')" aria-label="Share Link">
                     <i class="fa-solid fa-share-nodes"></i>
@@ -439,7 +492,7 @@
                 <p class="card-desc">Future Tech Strategy, ethical AI usage, and classroom implementation.</p>
             </div>
 
-            <!-- Card 6: MLT SharePoint -->
+            <!-- Card 7: MLT SharePoint -->
             <div class="card" onclick="window.open('https://wschoolae.sharepoint.com/sites/MLT2024/Shared%20Documents/Forms/AllItems.aspx?viewid=51d02232%2Dad78%2D4013%2Dac8b%2D04d7091380e1&p=true&ct=1772686419516&or=OWA%2DNT%2DMail&cid=1f0d2880%2Dbce9%2D8b44%2Dccbe%2D95caf9a4eca4', '_blank')">
                 <button class="share-btn" onclick="copyToClipboard(event, 'https://wschoolae.sharepoint.com/sites/MLT2024/Shared%20Documents/Forms/AllItems.aspx?viewid=51d02232%2Dad78%2D4013%2Dac8b%2D04d7091380e1&p=true&ct=1772686419516&or=OWA%2DNT%2DMail&cid=1f0d2880%2Dbce9%2D8b44%2Dccbe%2D95caf9a4eca4')" aria-label="Share Link">
                     <i class="fa-solid fa-share-nodes"></i>
@@ -451,7 +504,7 @@
                 <p class="card-desc">Access the Middle Leadership Team shared documents and resources.</p>
             </div>
 
-            <!-- Card 7: UAE Inspection Framework -->
+            <!-- Card 8: UAE Inspection Framework -->
             <div class="card" onclick="window.open('https://www.moe.gov.ae/ar/importantlinks/inspection/publishingimages/frameworkbooken.pdf', '_blank')">
                 <button class="share-btn" onclick="copyToClipboard(event, 'https://www.moe.gov.ae/ar/importantlinks/inspection/publishingimages/frameworkbooken.pdf')" aria-label="Share Link">
                     <i class="fa-solid fa-share-nodes"></i>
@@ -461,50 +514,6 @@
                 </div>
                 <h2 class="card-title">UAE Inspection Framework</h2>
                 <p class="card-desc">Official UAE school inspection framework and quality standards.</p>
-            </div>
-
-            <!-- ========================================== -->
-            <!-- PLACEHOLDER CARDS (For future expansion)   -->
-            <!-- ========================================== -->
-
-            <!-- Placeholder 1 -->
-            <div class="card coming-soon" onclick="handlePlaceholderClick(event)">
-                <span class="badge">Soon</span>
-                <!-- Share button left empty for placeholders, but functional -->
-                <button class="share-btn" onclick="copyToClipboard(event, 'Link coming soon')" aria-label="Share Link">
-                    <i class="fa-solid fa-share-nodes"></i>
-                </button>
-                <div class="icon-wrapper">
-                    <i class="fa-solid fa-plus"></i>
-                </div>
-                <h2 class="card-title">Future Hub Link</h2>
-                <p class="card-desc">Module currently under development. Check back later.</p>
-            </div>
-
-            <!-- Placeholder 2 -->
-            <div class="card coming-soon" onclick="handlePlaceholderClick(event)">
-                <span class="badge">Soon</span>
-                <button class="share-btn" onclick="copyToClipboard(event, 'Link coming soon')" aria-label="Share Link">
-                    <i class="fa-solid fa-share-nodes"></i>
-                </button>
-                <div class="icon-wrapper">
-                    <i class="fa-solid fa-plus"></i>
-                </div>
-                <h2 class="card-title">Future Hub Link</h2>
-                <p class="card-desc">Module currently under development. Check back later.</p>
-            </div>
-
-            <!-- Placeholder 3 -->
-            <div class="card coming-soon" onclick="handlePlaceholderClick(event)">
-                <span class="badge">Soon</span>
-                <button class="share-btn" onclick="copyToClipboard(event, 'Link coming soon')" aria-label="Share Link">
-                    <i class="fa-solid fa-share-nodes"></i>
-                </button>
-                <div class="icon-wrapper">
-                    <i class="fa-solid fa-plus"></i>
-                </div>
-                <h2 class="card-title">Future Hub Link</h2>
-                <p class="card-desc">Module currently under development. Check back later.</p>
             </div>
 
         </main>
