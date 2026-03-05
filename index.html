@@ -3,297 +3,447 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Al Wahda Private School - Leadership Hub</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Al Wahda Leadership Hub</title>
+    
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        /* CSS Variables for School Colors (Navy Blue & Gold) */
+        :root {
+            --primary-navy: #0B192C;
+            --secondary-navy: #1A365D;
+            --accent-gold: #D4AF37;
+            --accent-gold-hover: #F3E5AB;
+            --text-light: #F8FAFC;
+            --text-muted: #CBD5E1;
+            --glass-bg: rgba(255, 255, 255, 0.05);
+            --glass-border: rgba(212, 175, 55, 0.2);
+            --glass-hover: rgba(255, 255, 255, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+            -webkit-tap-highlight-color: transparent; /* Removes default tap highlight on touch devices */
+        }
 
         body {
-            font-family: 'Inter', sans-serif;
-            background-color: #0f172a; /* Deep slate dark mode */
-            background-image: 
-                radial-gradient(at 0% 0%, rgba(14, 165, 233, 0.15) 0px, transparent 50%),
-                radial-gradient(at 100% 100%, rgba(99, 102, 241, 0.15) 0px, transparent 50%);
-            background-attachment: fixed;
-            margin: 0;
+            background: linear-gradient(-45deg, #050b14, var(--primary-navy), var(--secondary-navy), #0a192f);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+            color: var(--text-light);
             min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 2rem 1rem;
+            overflow-x: hidden;
+        }
+
+        /* Animated Background */
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Main Dashboard Container */
+        .dashboard-container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Header Styling */
+        .header {
+            text-align: center;
+            margin-bottom: 3rem;
+            animation: fadeInDown 0.8s ease-out;
+        }
+
+        .school-name {
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: var(--accent-gold);
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .hub-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            letter-spacing: -1px;
+            background: linear-gradient(to right, #FFF, var(--accent-gold-hover));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Grid Layout */
+        .grid-layout {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 1.5rem;
+            padding-bottom: 3rem;
+        }
+
+        /* Glassmorphism Card Styling */
+        .card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid var(--glass-border);
+            border-radius: 1.25rem;
+            padding: 2rem 1.5rem;
+            position: relative;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            text-decoration: none;
+            color: inherit;
+            animation: fadeIn 0.8s ease-out backwards;
+        }
+
+        /* Staggered animation for cards */
+        .card:nth-child(1) { animation-delay: 0.1s; }
+        .card:nth-child(2) { animation-delay: 0.2s; }
+        .card:nth-child(3) { animation-delay: 0.3s; }
+        .card:nth-child(4) { animation-delay: 0.4s; }
+        .card:nth-child(5) { animation-delay: 0.5s; }
+        .card:nth-child(6) { animation-delay: 0.6s; }
+        .card:nth-child(7) { animation-delay: 0.7s; }
+        .card:nth-child(8) { animation-delay: 0.8s; }
+
+        .card:hover {
+            transform: translateY(-5px) scale(1.02);
+            background: var(--glass-hover);
+            border-color: var(--accent-gold);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), 0 0 15px rgba(212, 175, 55, 0.2);
+        }
+
+        /* Share Button */
+        .share-btn {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--text-muted);
+            width: 44px; /* Touch target size */
+            height: 44px; /* Touch target size */
+            border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            overflow-x: hidden;
-            color: #f8fafc;
-        }
-
-        /* Glassmorphism container */
-        .glass-panel {
-            background: rgba(255, 255, 255, 0.03);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-        }
-
-        /* Advanced Card Hover Effect */
-        #cards-container {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 1.5rem;
-        }
-
-        .hub-card {
-            background-color: rgba(255, 255, 255, 0.02);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            position: relative;
-            border-radius: 1.25rem;
-            display: flex;
-            flex-direction: column;
             cursor: pointer;
-            text-decoration: none;
-            overflow: hidden;
-            transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+            transition: all 0.2s ease;
+            z-index: 10;
         }
 
-        .hub-card:hover {
-            transform: translateY(-5px) scale(1.02);
-            border-color: rgba(56, 189, 248, 0.4);
-            box-shadow: 0 10px 40px -10px rgba(56, 189, 248, 0.2);
+        .share-btn:hover, .share-btn:active {
+            background: var(--accent-gold);
+            color: var(--primary-navy);
+            border-color: var(--accent-gold);
+            transform: scale(1.1);
         }
 
-        /* Glow effect tracking mouse */
-        .hub-card::before,
-        .hub-card::after {
-            content: "";
+        /* Card Content */
+        .icon-wrapper {
+            width: 60px;
+            height: 60px;
+            border-radius: 12px;
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.2), rgba(212, 175, 55, 0.05));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.75rem;
+            color: var(--accent-gold);
+            margin-bottom: 1.25rem;
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .card:hover .icon-wrapper {
+            background: var(--accent-gold);
+            color: var(--primary-navy);
+        }
+
+        .card-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .card-desc {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            line-height: 1.5;
+        }
+
+        /* Placeholder/Coming Soon Styling */
+        .card.coming-soon {
+            opacity: 0.6;
+            border: 1px dashed rgba(255, 255, 255, 0.2);
+            background: rgba(0, 0, 0, 0.2);
+        }
+        
+        .card.coming-soon:hover {
+            opacity: 1;
+            border-style: solid;
+        }
+
+        .badge {
             position: absolute;
-            top: 0;
-            left: 0;
-            height: 100%;
-            width: 100%;
-            border-radius: inherit;
+            top: 1.25rem;
+            right: 4.5rem; /* Next to share button */
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--text-light);
+            font-size: 0.7rem;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        /* Custom Toast Notification */
+        .toast-container {
+            position: fixed;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%) translateY(100px);
+            background: var(--accent-gold);
+            color: var(--primary-navy);
+            padding: 1rem 2rem;
+            border-radius: 30px;
+            font-weight: 600;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
             opacity: 0;
-            transition: opacity 500ms;
-            pointer-events: none;
+            transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            z-index: 1000;
         }
 
-        .hub-card::before {
-            background: radial-gradient(
-                800px circle at var(--mouse-x) var(--mouse-y), 
-                rgba(255, 255, 255, 0.06),
-                transparent 40%
-            );
-            z-index: 3;
-        }
-
-        .hub-card::after {  
-            background: radial-gradient(
-                600px circle at var(--mouse-x) var(--mouse-y), 
-                rgba(56, 189, 248, 0.4),
-                transparent 40%
-            );
-            z-index: 1;
-        }
-
-        .hub-card:hover::before,
-        .hub-card:hover::after {
+        .toast-container.show {
+            transform: translateX(-50%) translateY(0);
             opacity: 1;
         }
 
-        /* Content needs to be above the glow */
-        .hub-card-content {
-            background-color: rgba(15, 23, 42, 0.8);
-            border-radius: inherit;
-            margin: 1px;
-            height: calc(100% - 2px);
-            width: calc(100% - 2px);
-            z-index: 2;
-            position: relative;
-            padding: 1.5rem;
-            display: flex;
-            flex-direction: column;
+        /* Animations */
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
-        .icon-container {
-            background: linear-gradient(135deg, rgba(56, 189, 248, 0.1), rgba(99, 102, 241, 0.1));
-            color: #38bdf8;
-            transition: transform 0.3s ease;
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
-        .hub-card:hover .icon-container {
-            transform: scale(1.1) rotate(-5deg);
-            color: #7dd3fc;
+        /* Responsive Adjustments */
+        @media (max-width: 768px) {
+            .hub-title { font-size: 2rem; }
+            .grid-layout { grid-template-columns: 1fr; }
+            .badge { top: auto; bottom: 1.25rem; right: 1.5rem; } /* Move badge on mobile */
         }
-
-        /* Custom Scrollbar */
-        ::-webkit-scrollbar { width: 8px; }
-        ::-webkit-scrollbar-track { background: transparent; }
-        ::-webkit-scrollbar-thumb { background: rgba(255, 255, 255, 0.1); border-radius: 10px; }
-        ::-webkit-scrollbar-thumb:hover { background: rgba(255, 255, 255, 0.2); }
     </style>
 </head>
-<body class="p-4 md:p-8">
+<body>
 
-    <!-- Ambient background glows -->
-    <div class="fixed top-0 left-0 w-full h-full overflow-hidden -z-10 pointer-events-none">
-        <div class="absolute top-[-10%] left-[-10%] w-96 h-96 bg-sky-500/20 rounded-full blur-[100px]"></div>
-        <div class="absolute bottom-[-10%] right-[-10%] w-96 h-96 bg-indigo-500/20 rounded-full blur-[100px]"></div>
-    </div>
-
-    <!-- Main Tablet Container -->
-    <main class="glass-panel w-full max-w-7xl rounded-3xl p-6 md:p-10 flex flex-col mx-auto my-auto relative">
-        
-        <!-- Top Bar (Clock & Status) -->
-        <div class="flex justify-between items-center mb-8 border-b border-white/10 pb-4 text-slate-400 text-sm font-medium tracking-wide">
-            <div id="date-display" class="flex items-center gap-2">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="4" rx="2" ry="2"/><line x1="16" x2="16" y1="2" y2="6"/><line x1="8" x2="8" y1="2" y2="6"/><line x1="3" x2="21" y1="10" y2="10"/></svg>
-                <span>Loading Date...</span>
-            </div>
-            <div id="time-display" class="flex items-center gap-2 text-slate-200">
-                <span>00:00</span>
-            </div>
-        </div>
-
+    <div class="dashboard-container">
         <!-- Header -->
-        <header class="mb-10 text-center md:text-left">
-            <div class="inline-block px-3 py-1 mb-4 rounded-full bg-indigo-500/10 border border-indigo-500/20 text-indigo-300 text-xs font-semibold tracking-widest uppercase">
-                System Access
-            </div>
-            <h1 class="text-3xl md:text-5xl lg:text-6xl font-extrabold tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-sky-400 via-indigo-400 to-purple-400 mb-2">
-                Al Wahda Private School
-            </h1>
-            <p class="text-lg md:text-xl text-slate-400 font-light">
-                Executive Leadership Hub & Strategic Operations
-            </p>
+        <header class="header">
+            <div class="school-name">Al Wahda Private School</div>
+            <h1 class="hub-title">Leadership Hub</h1>
         </header>
 
-        <!-- Cards Grid -->
-        <div id="cards-container" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 w-full">
-
+        <!-- Main Grid -->
+        <main class="grid-layout">
+            
             <!-- Card 1: T&L Playbook -->
-            <a href="https://brandonabaki-design.github.io/AWPS-T-L-Playbook-Homepage/" target="_blank" class="hub-card group">
-                <div class="hub-card-content">
-                    <div class="icon-container w-12 h-12 rounded-xl flex items-center justify-center mb-4 border border-sky-400/20">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"/></svg>
-                    </div>
-                    <h2 class="text-xl font-semibold text-white mb-2 tracking-tight group-hover:text-sky-300 transition-colors">T&L Playbook</h2>
-                    <p class="text-sm text-slate-400 leading-relaxed mt-auto">Teaching and Learning guidelines, pedagogical strategies, and academic standards.</p>
+            <!-- Note: onclick triggers the link, passing target _blank to open in new tab -->
+            <div class="card" onclick="window.open('https://brandonabaki-design.github.io/AWPS-T-L-Playbook-Homepage/', '_blank')">
+                <!-- Share Button: stopPropagation prevents the card onclick from firing -->
+                <button class="share-btn" onclick="copyToClipboard(event, 'https://brandonabaki-design.github.io/AWPS-T-L-Playbook-Homepage/')" aria-label="Share Link">
+                    <i class="fa-solid fa-share-nodes"></i>
+                </button>
+                <div class="icon-wrapper">
+                    <i class="fa-solid fa-book"></i>
                 </div>
-            </a>
+                <h2 class="card-title">T&L Playbook</h2>
+                <p class="card-desc">Teaching & Learning Guidelines and pedagogical standards.</p>
+            </div>
 
             <!-- Card 2: SPEA Strategy -->
-            <a href="https://brandonabaki-design.github.io/SPEA-Strategy-Al-Wahda/" target="_blank" class="hub-card group">
-                <div class="hub-card-content">
-                    <div class="icon-container w-12 h-12 rounded-xl flex items-center justify-center mb-4 border border-sky-400/20">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
-                    </div>
-                    <h2 class="text-xl font-semibold text-white mb-2 tracking-tight group-hover:text-sky-300 transition-colors">SPEA Strategy</h2>
-                    <p class="text-sm text-slate-400 leading-relaxed mt-auto">Aligning school operations with Sharjah Private Education Authority frameworks.</p>
+            <div class="card" onclick="window.open('https://brandonabaki-design.github.io/SPEA-Strategy-Al-Wahda/', '_blank')">
+                <button class="share-btn" onclick="copyToClipboard(event, 'https://brandonabaki-design.github.io/SPEA-Strategy-Al-Wahda/')" aria-label="Share Link">
+                    <i class="fa-solid fa-share-nodes"></i>
+                </button>
+                <div class="icon-wrapper">
+                    <i class="fa-solid fa-chess-knight"></i>
                 </div>
-            </a>
+                <h2 class="card-title">SPEA Strategy</h2>
+                <p class="card-desc">Strategic Planning and official school improvement targets.</p>
+            </div>
 
             <!-- Card 3: Walkthrough Form -->
-            <a href="https://brandonabaki-design.github.io/Walkthrough-Form/" target="_blank" class="hub-card group">
-                <div class="hub-card-content">
-                    <div class="icon-container w-12 h-12 rounded-xl flex items-center justify-center mb-4 border border-sky-400/20">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/><path d="m9 15 2 2 4-4"/></svg>
-                    </div>
-                    <h2 class="text-xl font-semibold text-white mb-2 tracking-tight group-hover:text-sky-300 transition-colors">Walkthrough Form</h2>
-                    <p class="text-sm text-slate-400 leading-relaxed mt-auto">Digital assessment tools for rapid classroom observations and feedback.</p>
+            <div class="card" onclick="window.open('https://brandonabaki-design.github.io/Walkthrough-Form/', '_blank')">
+                <button class="share-btn" onclick="copyToClipboard(event, 'https://brandonabaki-design.github.io/Walkthrough-Form/')" aria-label="Share Link">
+                    <i class="fa-solid fa-share-nodes"></i>
+                </button>
+                <div class="icon-wrapper">
+                    <i class="fa-solid fa-clipboard-check"></i>
                 </div>
-            </a>
+                <h2 class="card-title">Walkthrough Form</h2>
+                <p class="card-desc">Classroom Observation and rapid feedback data collection.</p>
+            </div>
 
             <!-- Card 4: Coaching Framework -->
-            <a href="https://brandonabaki-design.github.io/Coaching-Framework-Al-Wahda/" target="_blank" class="hub-card group">
-                <div class="hub-card-content">
-                    <div class="icon-container w-12 h-12 rounded-xl flex items-center justify-center mb-4 border border-sky-400/20">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-                    </div>
-                    <h2 class="text-xl font-semibold text-white mb-2 tracking-tight group-hover:text-sky-300 transition-colors">Coaching Framework</h2>
-                    <p class="text-sm text-slate-400 leading-relaxed mt-auto">Mentorship programs, peer coaching structures, and professional growth tracks.</p>
+            <div class="card" onclick="window.open('https://brandonabaki-design.github.io/Coaching-Framework-Al-Wahda/', '_blank')">
+                <button class="share-btn" onclick="copyToClipboard(event, 'https://brandonabaki-design.github.io/Coaching-Framework-Al-Wahda/')" aria-label="Share Link">
+                    <i class="fa-solid fa-share-nodes"></i>
+                </button>
+                <div class="icon-wrapper">
+                    <i class="fa-solid fa-users-gear"></i>
                 </div>
-            </a>
+                <h2 class="card-title">Coaching Framework</h2>
+                <p class="card-desc">Staff Development, mentorship structures, and professional growth.</p>
+            </div>
 
             <!-- Card 5: AI Integration Plan -->
-            <a href="https://brandonabaki-design.github.io/AI-Integration-Plan-Al-Wahda/" target="_blank" class="hub-card group">
-                <div class="hub-card-content">
-                    <div class="icon-container w-12 h-12 rounded-xl flex items-center justify-center mb-4 border border-sky-400/20">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>
-                    </div>
-                    <h2 class="text-xl font-semibold text-white mb-2 tracking-tight group-hover:text-sky-300 transition-colors">AI Integration Plan</h2>
-                    <p class="text-sm text-slate-400 leading-relaxed mt-auto">Strategic roadmap for embedding Artificial Intelligence into curriculum and admin.</p>
+            <div class="card" onclick="window.open('https://brandonabaki-design.github.io/AI-Integration-Plan-Al-Wahda/', '_blank')">
+                <button class="share-btn" onclick="copyToClipboard(event, 'https://brandonabaki-design.github.io/AI-Integration-Plan-Al-Wahda/')" aria-label="Share Link">
+                    <i class="fa-solid fa-share-nodes"></i>
+                </button>
+                <div class="icon-wrapper">
+                    <i class="fa-solid fa-microchip"></i>
                 </div>
-            </a>
+                <h2 class="card-title">AI Integration Plan</h2>
+                <p class="card-desc">Future Tech Strategy, ethical AI usage, and classroom implementation.</p>
+            </div>
 
-            <!-- Blank Card 1 -->
-            <a href="#" class="hub-card group border-dashed border-white/20 hover:border-solid">
-                <div class="hub-card-content">
-                    <div class="icon-container bg-transparent w-12 h-12 rounded-xl flex items-center justify-center mb-4 border border-dashed border-slate-600 text-slate-500">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" x2="12" y1="5" y2="19"/><line x1="5" x2="19" y1="12" y2="12"/></svg>
-                    </div>
-                    <h2 class="text-xl font-semibold text-slate-400 mb-2 tracking-tight group-hover:text-white transition-colors">Add Module</h2>
-                    <p class="text-sm text-slate-500 leading-relaxed mt-auto">Placeholder for future administrative tool, dashboard, or resource link.</p>
+            <!-- ========================================== -->
+            <!-- PLACEHOLDER CARDS (For future expansion)   -->
+            <!-- ========================================== -->
+
+            <!-- Placeholder 1 -->
+            <div class="card coming-soon" onclick="handlePlaceholderClick(event)">
+                <span class="badge">Soon</span>
+                <!-- Share button left empty for placeholders, but functional -->
+                <button class="share-btn" onclick="copyToClipboard(event, 'Link coming soon')" aria-label="Share Link">
+                    <i class="fa-solid fa-share-nodes"></i>
+                </button>
+                <div class="icon-wrapper">
+                    <i class="fa-solid fa-plus"></i>
                 </div>
-            </a>
+                <h2 class="card-title">Future Hub Link</h2>
+                <p class="card-desc">Module currently under development. Check back later.</p>
+            </div>
 
-            <!-- Blank Card 2 -->
-            <a href="#" class="hub-card group border-dashed border-white/20 hover:border-solid">
-                <div class="hub-card-content">
-                    <div class="icon-container bg-transparent w-12 h-12 rounded-xl flex items-center justify-center mb-4 border border-dashed border-slate-600 text-slate-500">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" x2="12" y1="5" y2="19"/><line x1="5" x2="19" y1="12" y2="12"/></svg>
-                    </div>
-                    <h2 class="text-xl font-semibold text-slate-400 mb-2 tracking-tight group-hover:text-white transition-colors">Add Module</h2>
-                    <p class="text-sm text-slate-500 leading-relaxed mt-auto">Placeholder for future administrative tool, dashboard, or resource link.</p>
+            <!-- Placeholder 2 -->
+            <div class="card coming-soon" onclick="handlePlaceholderClick(event)">
+                <span class="badge">Soon</span>
+                <button class="share-btn" onclick="copyToClipboard(event, 'Link coming soon')" aria-label="Share Link">
+                    <i class="fa-solid fa-share-nodes"></i>
+                </button>
+                <div class="icon-wrapper">
+                    <i class="fa-solid fa-plus"></i>
                 </div>
-            </a>
+                <h2 class="card-title">Future Hub Link</h2>
+                <p class="card-desc">Module currently under development. Check back later.</p>
+            </div>
 
-            <!-- Blank Card 3 -->
-            <a href="#" class="hub-card group border-dashed border-white/20 hover:border-solid">
-                <div class="hub-card-content">
-                    <div class="icon-container bg-transparent w-12 h-12 rounded-xl flex items-center justify-center mb-4 border border-dashed border-slate-600 text-slate-500">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" x2="12" y1="5" y2="19"/><line x1="5" x2="19" y1="12" y2="12"/></svg>
-                    </div>
-                    <h2 class="text-xl font-semibold text-slate-400 mb-2 tracking-tight group-hover:text-white transition-colors">Add Module</h2>
-                    <p class="text-sm text-slate-500 leading-relaxed mt-auto">Placeholder for future administrative tool, dashboard, or resource link.</p>
+            <!-- Placeholder 3 -->
+            <div class="card coming-soon" onclick="handlePlaceholderClick(event)">
+                <span class="badge">Soon</span>
+                <button class="share-btn" onclick="copyToClipboard(event, 'Link coming soon')" aria-label="Share Link">
+                    <i class="fa-solid fa-share-nodes"></i>
+                </button>
+                <div class="icon-wrapper">
+                    <i class="fa-solid fa-plus"></i>
                 </div>
-            </a>
+                <h2 class="card-title">Future Hub Link</h2>
+                <p class="card-desc">Module currently under development. Check back later.</p>
+            </div>
 
-        </div>
-    </main>
+        </main>
+    </div>
 
+    <!-- Custom Toast Notification UI -->
+    <div id="toast" class="toast-container">
+        <i class="fa-solid fa-circle-check"></i>
+        <span id="toast-message">Link copied to clipboard!</span>
+    </div>
+
+    <!-- JavaScript for Interactivity -->
     <script>
-        // Dynamic Radial Glow Effect for Cards
-        document.getElementById("cards-container").onmousemove = e => {
-            for(const card of document.getElementsByClassName("hub-card")) {
-                const rect = card.getBoundingClientRect(),
-                      x = e.clientX - rect.left,
-                      y = e.clientY - rect.top;
+        let toastTimeout;
 
-                card.style.setProperty("--mouse-x", `${x}px`);
-                card.style.setProperty("--mouse-y", `${y}px`);
-            }
-        };
-
-        // Real-time Clock and Date for Tablet Vibe
-        function updateClock() {
-            const now = new Date();
+        /**
+         * Copies a specific URL to the clipboard and triggers the toast notification.
+         * Uses document.execCommand('copy') for maximum compatibility within iframes/web views.
+         */
+        function copyToClipboard(event, textToCopy) {
+            // Prevent the click event from bubbling up to the card's onclick handler
+            event.stopPropagation();
             
-            // Format Time (HH:MM)
-            let hours = now.getHours();
-            let minutes = now.getMinutes();
-            const ampm = hours >= 12 ? 'PM' : 'AM';
-            hours = hours % 12;
-            hours = hours ? hours : 12; // the hour '0' should be '12'
-            minutes = minutes < 10 ? '0' + minutes : minutes;
-            const timeString = hours + ':' + minutes + ' ' + ampm;
+            // Create a temporary textarea element to hold the text
+            const tempTextArea = document.createElement("textarea");
+            tempTextArea.value = textToCopy;
             
-            // Format Date (Day, Mon DD, YYYY)
-            const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-            const dateString = now.toLocaleDateString('en-US', options);
+            // Move it off-screen to prevent scrolling/visual jump
+            tempTextArea.style.position = "absolute";
+            tempTextArea.style.left = "-9999px";
+            
+            document.body.appendChild(tempTextArea);
+            
+            // Select and copy
+            tempTextArea.select();
+            document.execCommand("copy");
+            
+            // Cleanup
+            document.body.removeChild(tempTextArea);
 
-            document.getElementById('time-display').innerHTML = `<span class="font-bold text-lg text-white">${timeString}</span>`;
-            document.getElementById('date-display').querySelector('span').textContent = dateString;
+            // Show Notification
+            showToast("Link copied to clipboard!");
         }
 
-        setInterval(updateClock, 1000);
-        updateClock(); // Initial call
+        /**
+         * Displays the animated toast notification.
+         */
+        function showToast(message) {
+            const toast = document.getElementById("toast");
+            const toastMessage = document.getElementById("toast-message");
+            
+            toastMessage.textContent = message;
+            toast.classList.add("show");
+
+            // Clear existing timeout if user clicks multiple times rapidly
+            clearTimeout(toastTimeout);
+
+            // Hide after 3 seconds
+            toastTimeout = setTimeout(() => {
+                toast.classList.remove("show");
+            }, 3000);
+        }
+
+        /**
+         * Simple handler for placeholder cards to prevent errors
+         */
+        function handlePlaceholderClick(event) {
+            showToast("This module is coming soon!");
+        }
     </script>
 </body>
 </html>
