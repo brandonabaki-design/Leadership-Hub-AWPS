@@ -177,6 +177,7 @@
         .card:nth-child(9) { animation-delay: 0.5s; }
         .card:nth-child(10) { animation-delay: 0.55s; }
         .card:nth-child(11) { animation-delay: 0.6s; }
+        .card:nth-child(12) { animation-delay: 0.65s; }
 
         .card:hover {
             transform: translateY(-5px) scale(1.02);
@@ -578,6 +579,18 @@
                 </div>
                 <h2 class="card-title">Teacher Efficiency Tool Builder</h2>
                 <p class="card-desc">Custom Gemini AI assistant to build resources and streamline teacher workflows.</p>
+            </div>
+
+            <!-- Card 12: Request a Resource -->
+            <div class="card" onclick="window.open('https://docs.google.com/forms/d/e/1FAIpQLSdPsCfg5KD9n2Sfmz5zi2GLkr-vIPpTCg39D5hIWGjZ4Uw1kQ/viewform?usp=publish-editor', '_blank')">
+                <button class="share-btn" onclick="copyToClipboard(event, 'https://docs.google.com/forms/d/e/1FAIpQLSdPsCfg5KD9n2Sfmz5zi2GLkr-vIPpTCg39D5hIWGjZ4Uw1kQ/viewform?usp=publish-editor')" aria-label="Share Link">
+                    <i class="fa-solid fa-share-nodes"></i>
+                </button>
+                <div class="icon-wrapper">
+                    <i class="fa-solid fa-folder-plus"></i>
+                </div>
+                <h2 class="card-title">Request a Resource</h2>
+                <p class="card-desc">Submit ideas or requests for new tools and modules to be added to the hub.</p>
             </div>
 
         </main>
